@@ -15,8 +15,8 @@ app.post('/cache/:key', async (req, res) => {
 app.get('/cache/:key', async (req, res) => {
   const { key } = req.params;
   try {
-    const response = await axios.get(${DATAGRID_URL}/${key});
-    res.send(Valor: ${response.data});
+    const response = await axios.get('${DATAGRID_URL}/${key}');
+    res.send('Valor: ${response.data}');
   } catch (err) {
     res.status(404).send('Chave não encontrada');
   }
