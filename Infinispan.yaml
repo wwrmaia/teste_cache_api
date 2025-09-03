@@ -1,0 +1,37 @@
+apiVersion: infinispan.org/v1
+kind: Infinispan
+metadata:
+  name: datagrid-cluster
+  namespace: teste-cache
+spec:
+  replicas: 1
+  service:
+    type: DataGrid
+  container:
+    storage: 20Gi
+    livenessProbe:
+      failureThreshould: 5
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      successThreshould: 1
+      timeoutSeconds: 1
+    readinessProbe:
+      failureThreshould: 5
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      successThreshould: 1
+      timeoutSeconds: 1
+    startupProbe:
+      failureThreshould: 600
+      initialDelaySeconds: 3
+      periodSeconds: 1
+      successThreshould: 1
+      timeoutSeconds: 1
+  container:      
+    extraJvmOpts: "-Xms256m -Xmx512m"
+    memory: "512m"
+  security:
+    endpointAuthentication: false
+    endpointEncryption: {}
+  upgrades:
+    type: Shutdown
