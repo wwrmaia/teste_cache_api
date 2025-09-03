@@ -9,7 +9,7 @@ app.post('/cache/:key', async (req, res) => {
   const { key } = req.params;
   const value = req.body.value || 'valor-padrao';
   await axios.post('${DATAGRID_URL}/${key}', value);
-  res.send(Salvo: ${key} = ${value});
+  res.send('Salvo: ${key} = ${value}');
 });
 
 app.get('/cache/:key', async (req, res) => {
